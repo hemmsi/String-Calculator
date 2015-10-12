@@ -17,8 +17,14 @@ public class CalculatorTest {
     public void testStringWithOneNum(){
 	    assertEquals(1, Calculator.add("1"));
     }
+    
     @Test
     public void testStringWithTwoNum(){
         assertEquals(7, Calculator.add("5,2"));
+    }
+
+    @Test
+    public void testStringWithManyNum(){
+        assertEquals(24, Calculator.add("5,2,3,4,1,9"));
     }
 }
