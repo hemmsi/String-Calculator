@@ -3,16 +3,11 @@ package is.ru.stringcalculator;
 public class Calculator {
 
     public static int add(String text){
-		if(text.equals("")){
-			return 0;
-		}
-		if(text.length() == 1){
-			return toInt(text);	
-		}
+				
+		String[] numbers = split(text);
 		
-		String[] numbers = text.split(",");
 		int total = 0;
-		for(int i = 0; i< numbers.length; i++){
+		for(int i = 0; i < numbers.length; i++){
 			total += toInt(numbers[i]);
 		}
 		
@@ -20,6 +15,12 @@ public class Calculator {
     }
 
     private static int toInt(String text){
+    	if(text.equals("")){
+			return 0;
+		}
     	return Integer.parseInt(text);
     }
+    private static String[] split(String text){
+    	return text.split(",");
+    } 
 }
