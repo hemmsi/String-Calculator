@@ -27,4 +27,9 @@ public class CalculatorTest {
     public void testStringWithManyNum(){
         assertEquals(24, Calculator.add("5,2,3,4,1,9"));
     }
+
+    @Test
+    public void testStringWithNewLineDelimiter(){
+        assertEquals(10, Calculator.add("5\n2,3"));
+    }
 }
