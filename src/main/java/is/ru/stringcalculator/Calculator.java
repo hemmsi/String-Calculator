@@ -21,6 +21,6 @@ public class Calculator {
     	return Integer.parseInt(text);
     }
     private static String[] split(String text){
-    	return text.split(",");
+    	return text.split("\\n|,");
     } 
 }
