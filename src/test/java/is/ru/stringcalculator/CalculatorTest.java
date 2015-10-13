@@ -1,7 +1,11 @@
 package is.ru.stringcalculator;
+        
+        import static org.hamcrest.core.IsEqual.equalTo;
+        import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+        import org.junit.Rule;
+        import org.junit.Test;
+        import org.junit.rules.ExpectedException;
 
 public class CalculatorTest {
 
@@ -36,5 +40,13 @@ public class CalculatorTest {
     @Test
     public void testStringWithAnyDelimiter(){
         assertEquals(5, Calculator.add("//;\n2;3"));
+    }
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+    @Test(expected = RuntimeException.class)
+    public void testStringWithNegativeNumber(){
+        expectedEx.expect(RuntimeException.class);
+        expectedEx.expectMessage(equalTo("Negatives not allowed: -1"));
+        Calculator.add("-1,2");
     }
 }
