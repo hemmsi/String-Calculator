@@ -24,7 +24,11 @@ public class Calculator {
         if(text.equals("")){
             return 0;
         }
-        return Integer.parseInt(text);
+        int number = Integer.parseInt(text);
+        if(number > 1000){
+        	return 0;
+        }
+        return number;
     }
 
     private static String[] split(String text){
@@ -36,7 +40,7 @@ public class Calculator {
         }
         return text.split(delimiter);
     }
-    
+
     private static void checkForNeg(String text){
        if(text.length() > 0){
         	text = text.substring(0, text.length()-1);
