@@ -59,4 +59,8 @@ public class CalculatorTest {
     public void testStringWithNumberOver1000(){
         assertEquals(3, Calculator.add("1001,3"));
     }
+    @Test
+    public void testStringWithDelimitersOfAnyLenght(){
+        assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+    }
 }
