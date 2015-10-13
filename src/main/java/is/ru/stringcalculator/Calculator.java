@@ -15,10 +15,8 @@ public class Calculator {
         	}
             total += toInt(numbers[i]);
         }
-        if(negNumbers.length() > 0){
-        	negNumbers = negNumbers.substring(0, negNumbers.length()-1);
-        	throw new RuntimeException("Negatives not allowed: " + negNumbers);
-        }
+ 		checkForNeg(negNumbers);
+
         return total;
     }
 
@@ -37,5 +35,12 @@ public class Calculator {
             return text.substring(3).split(delimiter);
         }
         return text.split(delimiter);
+    }
+    
+    private static void checkForNeg(String text){
+       if(text.length() > 0){
+        	text = text.substring(0, text.length()-1);
+        	throw new RuntimeException("Negatives not allowed: " + text);
+        }
     }
 }
