@@ -6,7 +6,7 @@ public class Calculator {
 
         String[] numbers = split(text);
         
-        String negNumbers ="";
+        String negNumbers = "";
 
         int total = 0;
         for(int i = 0; i < numbers.length; i++){
@@ -21,14 +21,10 @@ public class Calculator {
     }
 
     private static int toInt(String text){
-        if(text.equals("")){
-            return 0;
+        if(!text.equals("") && Integer.parseInt(text) <= 1000){
+           return Integer.parseInt(text);
         }
-        int number = Integer.parseInt(text);
-        if(number > 1000){
-        	return 0;
-        }
-        return number;
+        return 0;
     }
 
     private static String[] split(String text){
