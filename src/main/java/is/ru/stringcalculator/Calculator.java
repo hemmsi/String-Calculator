@@ -5,10 +5,19 @@ public class Calculator {
     public static int add(String text){
 
         String[] numbers = split(text);
+        
+        String negNumbers ="";
 
         int total = 0;
         for(int i = 0; i < numbers.length; i++){
+        	if(numbers[i].startsWith("-")){
+        		negNumbers += numbers[i] + ",";
+        	}
             total += toInt(numbers[i]);
+        }
+        if(negNumbers.length() > 0){
+        	negNumbers = negNumbers.substring(0, negNumbers.length()-1);
+        	throw new RuntimeException("Negatives not allowed: " + negNumbers);
         }
         return total;
     }
@@ -16,9 +25,6 @@ public class Calculator {
     private static int toInt(String text){
         if(text.equals("")){
             return 0;
-        }
-        if(text.startsWith("-")){
-            throw new RuntimeException("Negatives not allowed: " + text);
         }
         return Integer.parseInt(text);
     }
@@ -32,8 +38,4 @@ public class Calculator {
         }
         return text.split(delimiter);
     }
-    public static void main(String[] args){
-       System.out.println(add("-1,2"));
-    }
-
 }
