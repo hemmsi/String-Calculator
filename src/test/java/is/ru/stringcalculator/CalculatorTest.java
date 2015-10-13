@@ -49,4 +49,10 @@ public class CalculatorTest {
         expectedEx.expectMessage(equalTo("Negatives not allowed: -1"));
         Calculator.add("-1,2");
     }
+    @Test
+    public void testStringWithNegativeNumbers(){
+        expectedEx.expect(RuntimeException.class);
+        expectedEx.expectMessage(equalTo("Negatives not allowed: -1,-3,-7"));
+        Calculator.add("-1,-3,-7,2");
+    }
 }
