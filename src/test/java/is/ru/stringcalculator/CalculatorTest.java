@@ -43,7 +43,7 @@ public class CalculatorTest {
     }
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testStringWithNegativeNumber(){
         expectedEx.expect(RuntimeException.class);
         expectedEx.expectMessage(equalTo("Negatives not allowed: -1"));

@@ -3,9 +3,9 @@ package is.ru.stringcalculator;
 public class Calculator {
 
     public static int add(String text){
-                    
+
         String[] numbers = split(text);
-     
+
         int total = 0;
         for(int i = 0; i < numbers.length; i++){
             total += toInt(numbers[i]);
@@ -17,17 +17,24 @@ public class Calculator {
         if(text.equals("")){
             return 0;
         }
-        return Integer.parseInt(text);
+        int number = Integer.parseInt(text);
+        if(number < 0){
+            throw new RuntimeException("Negatives not allowed: " + text);
+        }
+        return number;
     }
-    
+
     private static String[] split(String text){
-    	String delimiter = "\n|,";
-    	
-    	if(text.length() > 2 && text.charAt(0) == '/' && text.charAt(1) == '/'){
+        String delimiter = "\n|,";
+
+        if(text.length() > 2 && text.charAt(0) == '/' && text.charAt(1) == '/'){
             delimiter += "|" + text.charAt(2);
             return text.substring(3).split(delimiter);
-         }
+        }
         return text.split(delimiter);
+    }
+    public static void main(String[] args){
+       System.out.println(add("-1,2"));
     }
 
 }
