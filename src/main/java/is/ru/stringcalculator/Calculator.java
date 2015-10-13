@@ -17,11 +17,10 @@ public class Calculator {
         if(text.equals("")){
             return 0;
         }
-        int number = Integer.parseInt(text);
-        if(number < 0){
+        if(text.startsWith("-")){
             throw new RuntimeException("Negatives not allowed: " + text);
         }
-        return number;
+        return Integer.parseInt(text);
     }
 
     private static String[] split(String text){
