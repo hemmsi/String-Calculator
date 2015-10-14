@@ -5,7 +5,6 @@ public class Calculator {
     public static int add(String text){
 
         String[] numbers = split(text);
-
         String negNumbers = "";
 
         int total = 0;
@@ -16,7 +15,6 @@ public class Calculator {
             total += toInt(numbers[i]);
         }
         checkForNeg(negNumbers);
-
         return total;
     }
 
@@ -30,21 +28,19 @@ public class Calculator {
     private static String[] split(String text){
         String delimiter = "\n|,";
 
-        if(text.length() > 2 && text.charAt(0) == '/' && text.charAt(1) == '/'){
+        if(text.startsWith("//")){
+        	int index = 3;
+        	delimiter += '|'; 
             if(text.charAt(2) == '['){
-                int index = 3;
-                delimiter += '|';
-                for(int i = index; i < text.length(); i++, index = i){
-                    if(text.charAt(i) == ']'){
-                        break;
-                    }
-                    delimiter+= "\\" + text.charAt(i);
-
+         		
+                for(int i = index; text.charAt(i) != ']'; i++, index = i){
+                    delimiter += "\\" + text.charAt(i);
                 }
-                return text.substring(index + 1).split(delimiter);
+            }else{
+            delimiter += text.charAt(2);	
             }
-            delimiter += "|" + text.charAt(2);
-            return text.substring(4).split(delimiter);
+            
+            return text.substring(index + 1).split(delimiter);
         }
         return text.split(delimiter);
     }
