@@ -29,28 +29,7 @@ public class Calculator {
         String delimiter = "\n|,";
 
         if(text.startsWith("//")){
-            int index = 3;
-            delimiter += '|';
-
-            if(text.charAt(2) == '['){
-
-
-                for(int i = index; text.charAt(i) != '\n'; i++, index = i){
-                    if(text.charAt(i) == '['){
-                        delimiter += '|';
-                    }
-                    else if(text.charAt(i) =='*') {
-                            delimiter += "\\" + text.charAt(i);
-                    }
-                    else if(text.charAt(i  ) !=']'){
-                            delimiter += text.charAt(i);
-                    }
-                }
-
-            }else{
-                delimiter += text.charAt(2);
-            }
-            return text.substring(index + 1).split(delimiter);
+            return splitCustom(text, delimiter);
         }
         return text.split(delimiter);
     }
@@ -60,5 +39,25 @@ public class Calculator {
             text = text.substring(0, text.length()-1);
             throw new RuntimeException("Negatives not allowed: " + text);
         }
+    }
+    private static String[] splitCustom(String text, String delimiter){
+        int index = 3;
+        delimiter += '|';
+
+        if(text.charAt(index - 1) == '['){
+
+            for(int i = index; text.charAt(i) != '\n'; i++, index = i){
+                if(text.charAt(i) == '['){
+                    delimiter += '|';
+                }else if(text.charAt(i) =='*') {
+                    delimiter += "\\" + text.charAt(i);
+                }else if(text.charAt(i) !=']'){
+                    delimiter += text.charAt(i);
+                }
+            }
+        }else{
+            delimiter += text.charAt(index - 1);
+        }
+        return text.substring(index + 1).split(delimiter);
     }
 }
