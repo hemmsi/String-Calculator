@@ -29,17 +29,27 @@ public class Calculator {
         String delimiter = "\n|,";
 
         if(text.startsWith("//")){
-        	int index = 3;
-        	delimiter += '|'; 
+            int index = 3;
+            delimiter += '|';
+
             if(text.charAt(2) == '['){
-         		
-                for(int i = index; text.charAt(i) != ']'; i++, index = i){
-                    delimiter += "\\" + text.charAt(i);
+
+
+                for(int i = index; text.charAt(i) != '\n'; i++, index = i){
+                    if(text.charAt(i) == '['){
+                        delimiter += '|';
+                    }
+                    else if(text.charAt(i) =='*') {
+                            delimiter += "\\" + text.charAt(i);
+                    }
+                    else if(text.charAt(i  ) !=']'){
+                            delimiter += text.charAt(i);
+                    }
                 }
+
             }else{
-            delimiter += text.charAt(2);	
+                delimiter += text.charAt(2);
             }
-            
             return text.substring(index + 1).split(delimiter);
         }
         return text.split(delimiter);
